@@ -31,7 +31,8 @@ jobs:
           npm config set legacy-peer-deps true
           cd ${GITHUB_WORKSPACE} && npm install
           cd ${GITHUB_WORKSPACE} && npm run build     
-          cp  build docs     
+          mkdir -p docs
+          cp  -rf build/* docs/*
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global user.email "khrist14n@gmail.com"
           git config --global user.name "khrist14n"
