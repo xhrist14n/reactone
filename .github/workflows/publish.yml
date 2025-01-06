@@ -30,7 +30,8 @@ jobs:
         run:   | 
           npm config set legacy-peer-deps true
           cd ${GITHUB_WORKSPACE} && npm install
-          cd ${GITHUB_WORKSPACE} && npm run build          
+          cd ${GITHUB_WORKSPACE} && npm run build     
+          cp -rf build docs     
 
       - name: Change to gh pages
         run: |
