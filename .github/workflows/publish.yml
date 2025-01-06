@@ -32,12 +32,19 @@ jobs:
           cd ${GITHUB_WORKSPACE} && npm install
           cd ${GITHUB_WORKSPACE} && npm run build     
           cp -rf build docs     
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global user.email "khrist14n@gmail.com"
+          git config --global user.name "khrist14n"
+          git add docs
+          git commit  --allow-empty  -am "docs"
+          git push 
 
-      - name: Change to gh pages
-        run: |
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          cd ${GITHUB_WORKSPACE} && npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
-        env:
-          GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{github.repository}}
+      
+      ##- name: Change to gh pages
+      ##  run: |
+          ##git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          ##cd ${GITHUB_WORKSPACE} && npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
+      ##  env:
+      ##    GITHUB_TOKEN: ${{ secrets.SECRET_GITHUB_TOKEN }}
+      ##    GITHUB_REPOSITORY: ${{github.repository}}
 
