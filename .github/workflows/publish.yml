@@ -28,6 +28,7 @@ jobs:
 
       - name: Install dependencies
         run:   | 
+          npm config set legacy-peer-deps true
           cd ${GITHUB_WORKSPACE} && npm install
           cd ${GITHUB_WORKSPACE} && npm run build          
 
