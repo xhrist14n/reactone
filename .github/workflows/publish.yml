@@ -42,17 +42,16 @@ jobs:
           cp  -rf ./build/* ./docs      
           
       - name: Change paths
-        shell: pwsh
         run: |
-          $filePath = "build/index.html"
-          (Get-Content $filePath) -replace 'href="/"', 'href="/reactone/"' | Set-Content $filePath
-          (Get-Content $filePath) -replace 'src="/"', 'src="/reactone/"' | Set-Content $filePath
+
+          sed -i 's|href="/"|href="/reactone/"|g' build/index.html
+          sed -i 's|src="/"|src="/reactone/"|g' build/index.html
           
 
       - name: Push changes
         run: |
           cat build/index.html
-          
+
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global user.email "xhrist14n@gmail.com"
           git config --global user.name "xhrist14n"
