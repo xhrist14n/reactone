@@ -39,6 +39,8 @@ jobs:
           cd ${GITHUB_WORKSPACE} && npm run build     
           mkdir -p docs
           cp  -rf ./build/* ./docs
+          git config --global user.email "xhrist14n@gmail.com"
+          git config --global user.name "xhrist14n"
           git add docs
           git commit  --allow-empty  -am "docs"
       - name: Push changes
