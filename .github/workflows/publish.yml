@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - src/**
+      - public/**
+      - package.json
+      - tsconfig.json
 
 jobs:
   build:
@@ -27,18 +32,22 @@ jobs:
         run: echo ${{github.repository}}
 
       - name: Install dependencies
+        continue-on-error: true
         run:   | 
           npm config set legacy-peer-deps true
           cd ${GITHUB_WORKSPACE} && npm install
           cd ${GITHUB_WORKSPACE} && npm run build     
           mkdir -p docs
           cp  -rf ./build/* ./docs
-          git config --global --add safe.directory $GITHUB_WORKSPACE
-          git config --global user.email "khrist14n@gmail.com"
-          git config --global user.name "khrist14n"
           git add docs
           git commit  --allow-empty  -am "docs"
-          git push 
+      - name: Push changes
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git push origin main
+        env:
+          GITHUB_TOKEN:       ${{ secrets.SECRET_GITHUB_TOKEN }}
+          GITHUB_REPOSITORY:  ${{github.repository}}
 
       
       ##- name: Change to gh pages
