@@ -9,6 +9,7 @@ on:
       - public/**
       - package.json
       - tsconfig.json
+      - .github/workflows/publish.yml
 
 jobs:
   build:
@@ -46,7 +47,7 @@ jobs:
       - name: Push changes
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git push origin main
+          ##git push origin main
         env:
           GITHUB_TOKEN:       ${{ secrets.SECRET_GITHUB_TOKEN }}
           GITHUB_REPOSITORY:  ${{github.repository}}
