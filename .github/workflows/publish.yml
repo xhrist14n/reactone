@@ -47,14 +47,17 @@ jobs:
           $filePath = "build/index.html"
           (Get-Content $filePath) -replace 'href="/"', 'href="/reactone/"' | Set-Content $filePath
           (Get-Content $filePath) -replace 'src="/"', 'src="/reactone/"' | Set-Content $filePath
+          
 
       - name: Push changes
         run: |
+          cat build/index.html
+          
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global user.email "xhrist14n@gmail.com"
           git config --global user.name "xhrist14n"
-          git add docs
-          git commit  --allow-empty  -am "docs"
+          ##git add docs
+          ##git commit  --allow-empty  -am "docs"
 
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           ##git push origin main
