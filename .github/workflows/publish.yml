@@ -44,9 +44,7 @@ jobs:
       - name: Change paths
         run: |
 
-          sed -i 's|href="/"|href="/reactone/"|g' build/index.html
-          sed -i 's|src="/"|src="/reactone/"|g' build/index.html
-          
+          python3 change.py          
 
       - name: Push changes
         run: |
