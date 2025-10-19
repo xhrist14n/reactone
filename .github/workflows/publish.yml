@@ -37,14 +37,17 @@ jobs:
         run:   | 
           npm config set legacy-peer-deps true
           cd ${GITHUB_WORKSPACE} && npm install
-          cd ${GITHUB_WORKSPACE} && npm run build     
+          export PUBLIC_URL=/reactone/
+          cd ${GITHUB_WORKSPACE} && npm run build
           mkdir -p docs
           cp  -rf ./build/* ./docs      
           
       - name: Change paths
         run: |
 
-          python3 change.py          
+          ##python3 change.py          
+
+          echo "code"
 
       - name: Push changes
         run: |
