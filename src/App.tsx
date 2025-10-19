@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import RunningFox from "./components/RunningFox";
+
 function App() {
   return (
     <div className="App">
@@ -11,6 +13,11 @@ function App() {
         </p>
 
         <img src={logo} alt="Mi logo" width={200} />
+        
+        <p>
+          <RunningFox />
+        </p>
+        
       </header>
     </div>
   );
