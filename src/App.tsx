@@ -1,5 +1,5 @@
 import React from 'react';
-//import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -9,6 +9,8 @@ function App() {
         <p>
           Codigo de prueba en React
         </p>
+
+        <img src={logo} alt="Mi logo" width={200} />
       </header>
     </div>
   );
